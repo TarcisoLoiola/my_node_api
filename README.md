@@ -1,2 +1,2 @@
-# my_node_api
+node_api
 Node API.
