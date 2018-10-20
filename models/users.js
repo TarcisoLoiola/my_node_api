@@ -1,29 +1,51 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
 
-    var users = sequelize.define("users", {
+    const users = sequelize.define("users", {
       // Giving the Author model a name of type STRING
-    first_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    last_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    phone: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: true
-    }
-
+        userFirstName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        userLastName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        userPhone: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        userEmail: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        userPassword: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        userAddress1: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        userAddress2: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        userZipCode: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        userType: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     });
-  
     return users;
   };

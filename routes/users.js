@@ -1,14 +1,14 @@
-var express = require('express');
-var router = express.Router();
-var db = require('../models');
-const passport = require("passport");
+const express = require('express');
+const router = express.Router();
+const db = require('../models');
+// const passport = require("passport");
 
 /* GET users listing. */
 router.get('/users', (req, res, next) => {
-  db.users.findAll({})
-    .then(data => {
-      res.json(data);
-    })
+  db.users
+    .findAll({})
+    .then(data => res.json(data))
+    .catch(error => res.json(error))
 });
 
 router.get('/user/:id', (req, res, next) => {
@@ -18,26 +18,21 @@ router.get('/user/:id', (req, res, next) => {
       where: {
         id
       }
-    }
-    )
-    .then(data => {
-      res.json(data);
     })
+    .then(data => res.json(data))
+    .catch(error => res.json(error))
 });
 
 router.get('/user-email/:email', (req, res, next) => {
-  console.log(req.params.email)
-  const email = req.params.email;
+  const userEmail = req.params.email;
   db.users
     .findOne({
       where: {
-        email
+        userEmail
       }
-    }
-    )
-    .then(data => {
-      res.json(data);
     })
+    .then(data => res.json(data))
+    .catch(error => res.json(error))
 });
   
 module.exports = router;

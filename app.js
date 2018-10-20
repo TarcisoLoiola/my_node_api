@@ -11,9 +11,10 @@ const bodyParser = require('body-parser');
 // var mysql = require('mysql');
 // var connection = require('express-myconnection')
 
-// var transactionRouter = require('./routes/transactions');
 // var usersRouter = require('./routes/users');
 const userRoute = require('./routes/users');
+const transactionRoute = require('./routes/transactions');
+const scheduleRoute = require('./routes/schedule');
 
 const app = express();
 
@@ -26,14 +27,18 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(userRoute);
+app.use(transactionRoute);
+app.use(scheduleRoute);
+
 require("./routes/auth.js")(app, passport);
 
 // catch 404 and forward to error handler

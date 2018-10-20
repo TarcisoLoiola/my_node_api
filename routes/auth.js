@@ -1,20 +1,20 @@
 
-module.exports = function (app, passport) {
+module.exports = (app, passport) => {
 
-    app.post("/login", passport.authenticate("local-login", (res, err) => {
+    app.post("/login", passport.authenticate("local-login", (err, res, message) => {
         try {
-            res.json('Success')
+            res.json(err, res, message)
         } catch (error) {
-            // res.json(err)
+            res.json(err, res, message)
         }
     }
     ));
 
-    app.post("/register", passport.authenticate("local-register", (res, err) => {
+    app.post("/register", passport.authenticate("local-register", (err, res, message) => {
         try {
-            res.json('Success')
+            res.json(err, res, message)
         } catch(error) {
-            // res.json(err)
+            res.json(err, res, message)
         }
     }
     ));

@@ -1,13 +1,37 @@
-var express = require('express');
-var router = express.Router();
-var db = require('../models');
+const express = require('express');
+const router = express.Router();
+const db = require('../models');
 
-/* GET users listing. */
+/* GET transactions listing. */
 router.get('/transactions', (req, res, next) => {
-  db.users.findAll({})
-  .then( data => {
-    res.json(data);
-  })
+  db.transactions
+    .findAll({})
+    .then(data => res.json(data))
+    .catch(error => res.json(error))
+});
+
+router.get('/transaction/:id', (req, res, next) => {
+  const id = req.params.id
+  db.transactions
+    .findOne({
+      where: {
+        id
+      }
+    })
+    .then(data => res.json(data))
+    .catch(error => res.json(error))
+});
+
+router.get('/shared-with-me/:email', (req, res, next) => {
+  const shared_with = req.params.email
+  db.transactions
+    .findOne({
+      where: {
+        shared_with
+      }
+    })
+    .then(data => res.json(data))
+    .catch(error => res.json(error))
 });
 
 module.exports = router;
